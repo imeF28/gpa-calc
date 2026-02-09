@@ -1,30 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>GPA Calculator</title>
+  <style>
+    html, body {
+      font-family: Verdana, sans-serif;
+      background-color: #f8fff8;
+    }
+
+    .message {
+      color: gray;
+      font-size: 0.5em;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #00aa88;
+      text-align: center;
+    }
+
+    input:focus {
+      border-bottom: 2px solid #00aa88;
+    }
+  </style>
 </head>
+
 <body>
-  <h3>Standard (Academic) classes</h3>
-  <h3>As</h3><input id="sa" type="number" value="0">
-  <h3>Bs</h3><input id="sb" type="number" value="0">
-  <h3>Cs</h3><input id="sc" type="number" value="0">
-  <h3>Ds</h3><input id="sd" type="number" value="0">
-  <h3>Fs</h3><input id="sf" type="number" value="0">
-
-  <h3>Honors classes</h3>
-  <h3>As</h3><input id="ha" type="number" value="0">
-  <h3>Bs</h3><input id="hb" type="number" value="0">
-  <h3>Cs</h3><input id="hc" type="number" value="0">
-  <h3>Ds</h3><input id="hd" type="number" value="0">
-  <h3>Fs</h3><input id="hf" type="number" value="0">
-
-  <h3>AP classes</h3>
-  <h3>As</h3><input id="aa" type="number" value="0">
-  <h3>Bs</h3><input id="ab" type="number" value="0">
-  <h3>Cs</h3><input id="ac" type="number" value="0">
-  <h3>Ds</h3><input id="ad" type="number" value="0">
-  <h3>Fs</h3><input id="af" type="number" value="0">
-
+  <h1>GPA Calculator</h1>
+  <p class="message">How cooked are you?</p>
+  <div class="container">
+    <div class="section">
+      <h2>Standard Classes</h2>
+        <label for="sa">As </label><input id="sa" type="number" value="0"><br>
+        <label for="sb">Bs </label><input id="sb" type="number" value="0"><br>
+        <label for="sc">Cs </label><input id="sc" type="number" value="0"><br>
+        <label for="sd">Ds </label><input id="sd" type="number" value="0"><br>
+        <label for="sf">Fs </label><input id="sf" type="number" value="0"><br>
+    </div>
+    <div class="section">
+      <h2>Honors Classes</h2>
+        <label for="ha">As </label><input id="ha" type="number" value="0"><br>
+        <label for="hb">Bs </label><input id="hb" type="number" value="0"><br>
+        <label for="hc">Cs </label><input id="hc" type="number" value="0"><br>
+        <label for="hd">Ds </label><input id="hd" type="number" value="0"><br>
+        <label for="hf">Fs </label><input id="hf" type="number" value="0"><br>
+    </div>
+    <div class="section">
+      <h2>AP Classes</h2>
+        <label for="aa">As </label><input id="aa" type="number" value="0"><br>
+        <label for="ab">Bs </label><input id="ab" type="number" value="0"><br>
+        <label for="ac">Cs </label><input id="ac" type="number" value="0"><br>
+        <label for="ad">Ds </label><input id="ad" type="number" value="0"><br>
+        <label for="af">Fs </label><input id="af" type="number" value="0"><br>
+    </div>
+  </div>
   <h1 id="result">GPA: ___</h1>
 
   <script>
@@ -46,12 +89,28 @@ function gt(id) {
   }
 
 let result = g("result");
+function calc() {
+  return (gg("s", 4) + gg("h", 4.5) + gg("a", 5)) / (gt("s") + gt("h") + gt("a"));
+}
+
 function compute()
 {
-  result.innerText = "GPA: " + (gg("s", 4) + gg("h", 4.5) + gg("a", 5)) / (gt("s") + gt("h") + gt("a"));
+  result.innerText = "GPA: " + Math.round(calc() * 1000) / 1000;
+  if (calc() > 4.5)
+    result.innerText += " - Harvard is calling...";
+  else if (calc() > 4)
+    result.innerText += " - Harvard is a pipe dream...";
+  else if (calc() > 3)
+    result.innerText += " - Harvard is NOT calling.";
+  else if (calc() > 2)
+    result.innerText += " - Wake Tech is calling :,(";
+  else if (calc() > 1)
+    result.innerText += " - You're an entrepreneur!";
+
 }
 addEventListener("keypress", compute);
 addEventListener("click", compute);
   </script>
 </body>
+
 </html>
