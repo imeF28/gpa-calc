@@ -29,13 +29,29 @@
 
   <script>
 function g(id) { return document.getElementById(id) };
-function ga(id) { g(id + "a").value + g(id + "b").value + g(id + "c").value + g(id + "d").value + g(id + "e").value }
+function gg(id, s)
+{
+  return g(id + "a").valueAsNumber * s
+  + g(id + "b").valueAsNumber * (s-1)
+  + g(id + "c").valueAsNumber * (s-2)
+  + g(id + "d").valueAsNumber * (s-3)
+  + g(id + "f").valueAsNumber * 0
+}
+function gt(id) {
+  return g(id + "a").valueAsNumber
+  + g(id + "b").valueAsNumber
+  + g(id + "c").valueAsNumber
+  + g(id + "d").valueAsNumber
+  + g(id + "f").valueAsNumber
+  }
 
 let result = g("result");
-    
-addEventListener("keypress", () => {
-  result.innerText = "GPA: " + (ga("s") * 4 + ga("h") * 4.5 + ga("a") * 5) / (ga("s") + ga("h") + ga("a"));
-});
+function compute()
+{
+  result.innerText = "GPA: " + (gg("s", 4) + gg("h", 4.5) + gg("a", 5)) / (gt("s") + gt("h") + gt("a"));
+}
+addEventListener("keypress", compute);
+addEventListener("click", compute);
   </script>
 </body>
 </html>
