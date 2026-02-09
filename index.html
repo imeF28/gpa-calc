@@ -35,10 +35,10 @@
 
   <script>
 function g(id) { return document.getElementById(id) };
-function ga() { g("id" + "a").value + g("id" + "b").value + g("id" + "c").value + g("id" + "d").value + g("id" + "e").value }
+function ga(id) { g(id + "a").value + g(id + "b").value + g(id + "c").value + g(id + "d").value + g(id + "e").value }
 
 addEventListener("keypress", () => {
-  result.innerText = (ga("s") * 4 + ga("h") * 4.5 + ga("a") * 5) / (ga("s") + ga("h") + ga("a"));
+  result.innerText = "GPA: " + (ga("s") * 4 + ga("h") * 4.5 + ga("a") * 5) / (ga("s") + ga("h") + ga("a"));
 });
   </script>
 </body>
