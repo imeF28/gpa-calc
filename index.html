@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GPA Calculator</title>
+</head>
+<body>
+  <h3>Standard (Academic) classes</h3>
+  <input id="standard" type="number">
+
+  <h3>Honors classes</h3>
+  <input id="honors" type="number">
+
+  <h3>AP classes</h3>
+  <input id="ap" type="number">
+
+  <h1 id="result">GPA: ___</h1>
+
+  <script>
+let standard = document.getElementById("standard");
+let honors = document.getElementById("honors");
+let ap = document.getElementById("ap");
+let result = document.getElementById("result");
+
+addEventListener("keypress", () => {
+  result.innerText = standard.value * 4 + honors.value * 4.5 + ap.value * 5 / (standard.value + honors.value + ap.value);
+});
+  </script>
+</body>
+</html>
